@@ -1,0 +1,147 @@
+/********************************Copyright (c)**********************************\
+**
+**                   (c) Copyright 2018, WangYu, China, SZ.
+**                           All Rights Reserved
+**
+**                       By(深圳市北斗云信息科技有限公司)
+**
+**----------------------------------文件信息------------------------------------
+** 文件名称: main.c
+** 创建人员: WangYu
+** 创建日期: 2018-08-22
+** 文档描述:
+**
+**----------------------------------版本信息------------------------------------
+** 版本代号: V1.0
+** 版本说明: 初始版本
+**
+**------------------------------------------------------------------------------
+\********************************End of Head************************************/
+
+#include "beep_driver.h"
+#include "stm32f10x.h"
+#include "led_driver.h"
+#include "SysTick.h"
+#include "infraed.h"
+#include "smoke_driver.h"
+#include "hc_sr04.h"
+#include "gprs_driver.h"
+#include "key.h"
+#include "exti_driver.h"
+#include "usart_driver.h"
+#include "ST_string.h"
+#include "rc522_driver.h"
+#include "spi_driver.h"
+#include "i2c_driver.h"
+#include "Run_task.h"
+
+#include "raster_ruler.h"
+
+
+
+#if 0
+int main(void)
+{
+    Led_InitConfig();		//LED
+    SysTick_init(72);		//滴答定时器
+//	Beep_InitConfig();		//BEEP
+
+//	Infraed_InitConfig();	//红外
+//	ADC1_Init();			//烟雾传感器
+//	SR04_InitConfig();		//超声波
+//	Key_InitConfig();		//按键
+    Exti_InitConfig();		//中断
+    USART_InitConfig();
+//	RC522_Init();			//RFID
+//	RFID_SPI_InitConfig();	//RFID_SPi
+
+
+    usart1_putstr("Usart1_Begin\r\n",st_strlen("Usart1_Begin\r\n"));
+    usart3_putstr("Usart3_Begin\r\n",st_strlen("Usart3_Begin\r\n"));
+    Run_Start();
+//	Call_Phone();			//打电话
+    Send_text_message();	//发送TEXT短信
+//	Send_Chinese_message();
+
+    while(1)
+    {
+//		RFID_Test();
+//		Beep_hold();
+//		Led_Ctl(LED_GREEN,ON);
+//		Led_Ctl(LED_BLUE,ON);
+//		SR04_Ctrl();			//超声波模块启动
+//		Distance_Show();		//超声波模块工作
+//		Led_Ctl(LED_BLUE,ON);
+//		delay_ms(250);
+//		Led_Ctl(LED_GREEN,OFF);
+//		Led_Ctl(LED_BLUE,OFF);
+//		Led_Ctl(LED_BLUE,OFF);
+//		delay_ms(250);
+//		Beep_hold();
+//		Key_Scan(get_KeyType());
+
+//		delay_ms(1000);
+//		USART_SendData(USART3, 'a');
+//		Beep_On();
+//		delay_ms(1500);
+//		Beep_Off();
+//		delay_ms(1500);
+//		delay_ms(1000);
+//		Beep_On();
+//
+//		delay_ms(10);
+//		Beep_Off();
+        Led_Ctl(LED_BLUE,ON);
+//		delay_ms(10);
+        Led_Ctl(LED_GREEN,ON);
+//		delay_ms(1000);
+//		//Beep_Contrl(128);
+//		delay_ms(1000);
+//
+
+//		Led_Ctl(LED_RED,ON);
+//		Led_Ctl(LED_BLUE,ON);
+//		Led_Ctl(LED_GREEN,ON);
+        //Beep_Contrl(0);
+//		delay_ms(1000);
+//		Inf_Ctl();		//红外
+        //Key_Scan(Get_KeyType());
+    }
+}
+
+#else
+int main(void)
+{
+    Led_InitConfig();		//LED
+    SysTick_init(72);		//滴答定时器
+    Exti_InitConfig();		//中断
+    USART_InitConfig();
+
+
+//	usart1_putstr("Usart1_Begin\r\n",st_strlen("Usart1_Begin\r\n"));
+    usart3_putstr("Usart3_Begin\r\n",st_strlen("Usart3_Begin\r\n"));
+//	Call_Phone();			//打电话
+//	Send_text_message();	//发送TEXT短信
+
+
+
+
+    while(1)
+    {
+        USART_SendData(USART3, 'a');
+//		Led_Ctl(LED_RED,ON);
+//		delay_ms(1000);
+        Led_Ctl(LED_BLUE,ON);
+        delay_ms(1000);
+//		Led_Ctl(LED_GREEN,ON);
+//		delay_ms(1000);
+//
+        Led_Ctl(LED_BLUE,OFF);
+        delay_ms(1000);
+//		Led_Ctl(LED_BLUE,OFF);
+
+    }
+}
+
+
+#endif
